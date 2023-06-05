@@ -40,9 +40,11 @@ dependencies:
   uuid: ^3.0.7
   equatable: ^2.0.5
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  pigeon: ^10.0.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

@@ -4,7 +4,7 @@ import 'package:todo/model/todo_model.dart';
 part 'overview_state.dart';
 
 class OverviewCubit extends Cubit<OverviewState> {
-  List<TodoModel> listTodos = List.generate(9,
+  List<TodoModel> listTodos = List.generate(3,
       (index) => TodoModel(title: 'title $index', id: '$index', description: 'description $index'),
       growable: true);
   OverviewCubit() : super(const OverviewState(status: OverviewStatus.loading, listTodos: []));

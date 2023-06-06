@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/cubit/home_cubit/home_cubit.dart';
 import 'package:todo/cubit/overview_cubit/overview_cubit.dart';
 import 'package:todo/cubit/status_cubit/status_cubit.dart';
-import 'package:todo/screens/setting_page.dart';
-import 'package:todo/screens/status_page.dart';
-import 'package:todo/screens/overview_page.dart';
+import 'package:todo/screens/smartphone/setting_page.dart';
+import 'package:todo/screens/smartphone/status_page.dart';
+import 'package:todo/screens/smartphone/overview_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -81,7 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       active++;
                     }
                   }
-                  //print('$comp-------------$active');
                   context.read<StatusCubit>().getStatus(comp, active);
                 }
               },

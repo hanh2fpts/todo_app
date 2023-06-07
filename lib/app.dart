@@ -43,7 +43,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final widthScreen = MediaQuery.of(context).size.width;
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ThemeCubit()..getCurrentTheme()),
@@ -57,10 +56,21 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: state.currentTheme,
-            home: widthScreen > 600 ? const MyHomePageTl() : const MyHomePage(),
+            home: checkScreenSize(context) != 'COMPACT' ? const MyHomePageTl() : const MyHomePage(),
           );
         },
       ),
     );
   }
+}
+
+String checkScreenSize(BuildContext context) {
+  final widthScreen = MediaQuery.of(context).size.width;
+  if (widthScreen < 600) {
+    return 'COMPACT';
+  }
+  if (widthScreen > 600 && widthScreen < 840) {
+    return 'MEDIUM';
+  }
+  return 'EXPANDED';
 }

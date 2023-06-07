@@ -41,7 +41,6 @@ dependencies:
   equatable: ^2.0.5
   quick_actions: ^1.0.5
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

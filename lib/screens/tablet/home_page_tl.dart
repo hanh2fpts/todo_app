@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo/app.dart';
 import 'package:todo/cubit/home_cubit/home_cubit.dart';
 import 'package:todo/screens/tablet/setting_page_tl.dart';
 import 'package:todo/screens/tablet/status_page_tl.dart';
@@ -23,26 +24,44 @@ class _MyHomePageTlState extends State<MyHomePageTl> {
         return Scaffold(
           body: Row(
             children: [
-              NavigationDrawer(
-                elevation: 0.5,
-                onDestinationSelected: (value) => context.read<HomeCubit>().selectTab(value),
-                selectedIndex: state,
-                children: const [
-                  SizedBox(height: 50),
-                  NavigationDrawerDestination(
-                    icon: Icon(CupertinoIcons.list_bullet),
-                    label: Text('Todos'),
-                  ),
-                  NavigationDrawerDestination(
-                    icon: Icon(Icons.show_chart),
-                    label: Text('Status'),
-                  ),
-                  NavigationDrawerDestination(
-                    icon: Icon(Icons.settings),
-                    label: Text('Setting'),
-                  )
-                ],
-              ),
+              checkScreenSize(context) == 'EXPANDED'
+                  ? NavigationDrawer(
+                      elevation: 0.5,
+                      onDestinationSelected: (value) => context.read<HomeCubit>().selectTab(value),
+                      selectedIndex: state,
+                      children: const [
+                        SizedBox(height: 50),
+                        NavigationDrawerDestination(
+                          icon: Icon(CupertinoIcons.list_bullet),
+                          label: Text('Todos'),
+                        ),
+                        NavigationDrawerDestination(
+                          icon: Icon(Icons.show_chart),
+                          label: Text('Status'),
+                        ),
+                        NavigationDrawerDestination(
+                          icon: Icon(Icons.settings),
+                          label: Text('Setting'),
+                        )
+                      ],
+                    )
+                  : NavigationRail(
+                      onDestinationSelected: (value) => context.read<HomeCubit>().selectTab(value),
+                      destinations: const [
+                        NavigationRailDestination(
+                          icon: Icon(CupertinoIcons.list_bullet),
+                          label: Text('Todos'),
+                        ),
+                        NavigationRailDestination(
+                          icon: Icon(Icons.show_chart),
+                          label: Text('Status'),
+                        ),
+                        NavigationRailDestination(
+                          icon: Icon(Icons.settings),
+                          label: Text('Setting'),
+                        )
+                      ],
+                      selectedIndex: state),
               const VerticalDivider(
                 thickness: 1,
                 width: 1,
